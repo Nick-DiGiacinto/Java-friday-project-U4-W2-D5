@@ -1,0 +1,41 @@
+ISBN: 606653640
+Title: Blithe Spirit
+yearOfPublication: 1983
+pageNumber: 256
+frequency: weekly
+,
+ISBN: 1680379210
+Title: Eyeless in Gaza
+yearOfPublication: 1967
+pageNumber: 241
+frequency: weekly
+,
+ISBN: 239838519
+Title: Blue Remembered Earth
+yearOfPublication: 1977
+pageNumber: 116
+frequency: weekly
+,
+ISBN: 977984893
+Title: Quo Vadis
+yearOfPublication: 1937
+pageNumber: 278
+frequency: weekly
+,
+ISBN: 1207340000
+Title: This Side of Paradise
+yearOfPublication: 1934
+pageNumber: 355
+frequency: semiannual
+,
+ISBN: 17538490
+Title: The Monkey's Raincoat
+yearOfPublication: 2009
+pageNumber: 108
+frequency: monthly
+,
+ISBN: 107284035
+Title: Edna O'Brien
+yearOfPublication: 1988
+pageNumber: 334
+frequency: semiannual

@@ -7,25 +7,48 @@ import entities.Catalog;
 import com.github.javafaker.Faker;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.io.FileUtils;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
+
+//Ho realizzato quasi l'interità del progetto, e ne ho provato diverse volte la funzionalità. L'unica cosa è che
+// negli ultimi aggiustamenti che ho attuato, si è verificato un piccolo problema con la bookList che stranamente non sono riuscito
+//subito a risolvere, anche se la soluzione mi sembrava semplice. Non so se vi sia un problema con la mia cache di Intellij di questo progetto.
+//Chiedo gentilmente di provare a risolvere questo piccolo errore presente nel main per far partire tutto il programma.
+//Chiaramente io proverò il prima possibile a risolvera la situazione e se dovessi riuscirvi in modo certo effettuerò un commit
+//aggiuntivo per poterti permettere di correggere più agilmente il progetto senza questo inconveniente. Ti ringrazio per la comprensione.
 
 public class Application {
 
     public static void main(String[] args) {
-        Faker faker = new Faker();
+        Faker faker00 = new Faker();
         Random random = new Random();
-
+        frequency[] values = frequency.values();
+        List<String> authorList = new ArrayList<>();
+        authorList.add(faker00.book().author());
+        authorList.add(faker00.book().author());
+        authorList.add(faker00.book().author());
+        Supplier<Magazines> randomMagazines = () -> new Magazines(random.nextInt(1, 1000000000), faker00.book().title(), random.nextInt(1890, 2024), random.nextInt(40, 650), values[random.nextInt(0, values.length)]);
+        Supplier<Books> randomBooks = () -> new Books(random.nextInt(1, 1000000000), faker00.book().title(), random.nextInt(1890, 2024), random.nextInt(40, 650), authorList.get(random.nextInt(0, authorList.size())), faker00.book().genre());
+        //Random magazine, limito il numero dei risultati, giusto per vederne la funzionalità
         List<Magazines> magazinesList = new ArrayList<>();
-        Magazines r1 = new Magazines(1453789011, faker.book().title(), random.nextInt(1945, 2024), random.nextInt(40, 300), frequency.weekly);
-        Magazines r2 = new Magazines(1539281033, faker.book().title(), random.nextInt(1945, 2024), random.nextInt(40, 300), frequency.monthly);
-        Magazines r3 = new Magazines(1653627123, faker.book().title(), random.nextInt(1945, 2024), random.nextInt(40, 300), frequency.semiannual);
-        magazinesList.add(r1);
-        magazinesList.add(r2);
-        magazinesList.add(r3);
+        for (int i = 0; i < 6; i++) {
+            magazinesList.add(randomMagazines.get());
+        }
         magazinesList.forEach(System.out::println);
-        //Faccio uno scanner per consentire all'utente di scegliere cosa vorrebbe visualizzare fra i books o le magazines
+        //Random books
+        List<Books> libriList = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            libriList.add(randomBooks.get());
+        }
+        libriList.forEach(System.out::println);
+
+        //Faccio uno scanner per consentire all'utente di scegliere cosa vorrebbe visualizzare fra i books o i magazines
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to this catalog of books and magazines");
         System.out.println("///");
@@ -34,8 +57,9 @@ public class Application {
         System.out.println("2. Books");
         System.out.println("3. Esc");
         int selection = scanner.nextInt();
-        //creo uno switch case, con altri switch annidati, per consentire all'utente di inserire tutti i dati del magazine o del book che sta cercando,
-        // rispettando i parametri della consegna
+        //Creo uno switch case, con altri switch annidati, per consentire all'utente di inserire tutti i dati del magazine o del book che sta cercando,
+        // rispettando i parametri della consegna. Prima di provare chiedo gentilmente di controllare i file a disposizione, presenti come file testuali
+        //nel package denominato texts
         switch (selection) {
             case 1:
                 System.out.println("1. Insert a new magazine");
@@ -126,7 +150,7 @@ public class Application {
                         String title = scanner.next();
                         System.out.println("Insert year of publication");
                         int yearOfPublication = scanner.nextInt();
-                        System.out.println("Insert number of pages);
+                        System.out.println("Insert number of pages");
                         int pageNumber = scanner.nextInt();
                         System.out.println("Insert the author of the book");
                         String author = scanner.next();
@@ -147,7 +171,7 @@ public class Application {
                         }
                         break;
                     case 3:
-                        System.out.println("Insert the yaer of publication of the book to visualize");
+                        System.out.println("Insert the year of publication of the book to visualize");
                         int yearOfPublication2 = scanner.nextInt();
                         List<Books> booksList1 = booksList.stream()
                                 .filter(books -> books.getYearOfPublication() == yearOfPublication2)
@@ -165,12 +189,13 @@ public class Application {
                         System.exit(0);
                         break;
                     default:
-                        System.out.println("Scelta non valida");
+                        System.out.println("Invalid choices");
                         break;
                 }
                 break;
             case 3:
                 System.exit(0);
         }
+
     }
 }

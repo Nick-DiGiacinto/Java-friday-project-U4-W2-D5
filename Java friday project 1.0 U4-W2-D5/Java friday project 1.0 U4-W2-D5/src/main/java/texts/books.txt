@@ -1,0 +1,43 @@
+//Ho cercato alcuni libri da un database pubblico e li ho inseriti per verificare la funzionalità dell'esercizio
+
+ISBN: 1826357822
+Title: All the King's Men
+yearOfPublication: 1994
+pageNumber: 198
+Author: Neville Bruen V
+Genre: Textbook
+
+ISBN: 283739865
+Title: An Acceptable Time
+yearOfPublication: 1990
+pageNumber: 424
+Author: Elodia Fisher
+Genre: Reference book
+
+ISBN: 581953426
+Title: Time of our Darkness
+yearOfPublication: 2017
+pageNumber: 369
+Author: Ronnie Harris
+Genre: Short story
+,
+ISBN: 808549577
+Title: The Man Within
+yearOfPublication: 1955
+pageNumber: 228
+Author: Neville Bruen V
+Genre: Fairy tale
+,
+ISBN: 847363378
+Title: Blood's a Rover
+yearOfPublication: 2007
+pageNumber: 444
+Author: Dr. Leta Stamm
+Genre: Comic/Graphic Novel
+
+ISBN: 580418674
+Title: A Passage to India
+yearOfPublication: 1920
+pageNumber: 149
+Author: Elodia Fisher
+Genre: Fantasy
